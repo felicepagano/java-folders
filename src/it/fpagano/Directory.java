@@ -37,7 +37,12 @@ public class Directory {
         var newDir = new Directory(name, this);
         boolean add = this.subFolders.add(newDir);
         if(!add) {
-            //throw new RuntimeException("directory alredy exists");
+            for (Directory subFolder : this.subFolders) {
+                if(subFolder.equals(newDir)) {
+                    return subFolder;
+                }
+            }
+            throw new RuntimeException("WTF");
         }
         return newDir;
     }
